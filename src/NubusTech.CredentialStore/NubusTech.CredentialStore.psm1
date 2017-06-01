@@ -1,13 +1,13 @@
-$publicFiles = @(Get-ChildItem $PSScriptRoot\public\*.ps1 -ErrorAction SilentlyContinue)
-$privateFiles = @(Get-ChildItem $PSScriptRoot\private\*.ps1 -ErrorAction SilentlyContinue)
+. $PSScriptRoot\public\Initialize-CsStore.ps1
+. $PSScriptRoot\public\Get-CsEntry.ps1
+. $PSScriptRoot\public\Set-CsEntry.ps1
+. $PSScriptRoot\public\Get-CsCredential.ps1
+. $PSScriptRoot\public\Get-CsSecret.ps1
+. $PSScriptRoot\public\Get-CsDefaultPath.ps1
+. $PSScriptRoot\public\Set-CsDefaultPath.ps1
 
-foreach ($import in @($publicFiles + $privateFiles)) {
-    . $import.fullname
+$defaultPath = "$($env:userprofile)\CredentialStore.json"
+Set-CsDefaultPath -FilePath $defaultPath
+if (-Not $(Test-Path $defaultPath)) {
+    Initialize-CsStore -FilePath $defaultPath
 }
-
-Set-CsDefaultPath -FilePath "$($env:userprofile)\CredentialStore.json"
-if (-Not $(Test-Path $(Get-CsDefaultPath))) {
-    Initialize-CsStore -FilePath $(Get-CsDefaultPath)
-}
-
-Export-ModuleMember -Function $($publicFiles | Select -ExpandProperty BaseName) -Alias *
