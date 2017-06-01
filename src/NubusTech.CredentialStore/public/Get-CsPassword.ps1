@@ -1,22 +1,22 @@
 <#
 .SYNOPSIS
-    Get CredentialStore Entry Secret
+    Get CredentialStore Entry Password
 .DESCRIPTION
-    The Get-CsSecret cmdlet gets the credential password for a CredentialStore entry by name.
+    The Get-CsPassword cmdlet gets the credential password for a CredentialStore entry by name.
 .PARAMETER FilePath
     Specifies the path to the CredentialStore file.
 .PARAMETER Name
     Specifies the CredentialStore entry name of of the be retrieved. Wildcards are not permitted.
     This cmdlet throws an error if no entry with that name exists.
 .PARAMETER Raw
-    Return the secret as a standard unsecure string.
+    Return the Password as a standard unsecure string.
 .Example
-    Get-CsSecret -FilePath CredentialStore.json -Name LocalServer
+    Get-CsPassword -FilePath CredentialStore.json -Name LocalServer
     This command gets the password of the CredentialStore entry named LocalServer in the CredentialStore.json file.
 .LINK
     https://github.com/
 #>
-function Get-CsSecret {
+function Get-CsPassword {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true, Position = 0)]
@@ -31,7 +31,7 @@ function Get-CsSecret {
         })] 
         [Parameter(Mandatory = $false, Position = 2)]
         [Alias("File")]
-        [string] $FilePath = (Get-CsDefaultPath)
+        [string] $FilePath = (Get-CsDefaultStore)
     )
 
     $entry = Get-CsEntry -Name $Name -FilePath $FilePath
@@ -44,5 +44,5 @@ function Get-CsSecret {
         }
     }
 
-    throw "Get-CsSecret : Cannot find any entry with entry name '$Name'."
+    throw "Get-CsPassword : Cannot find any entry with entry name '$Name'."
 }
