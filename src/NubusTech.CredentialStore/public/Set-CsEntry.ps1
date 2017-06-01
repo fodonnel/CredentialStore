@@ -15,7 +15,7 @@
     Set-CsEntry -FilePath CredentialStore.json -Name LocalServer -Credential $cred
     This command sets the CredentialStore entry named LocalServer in the CredentialStore.json file.
 .LINK
-    https://github.com/
+    https://github.com/nubustech/NubusTech.CredentialStore
 #>
 function Set-CsEntry {
     [CmdletBinding(SupportsShouldProcess = $false)]

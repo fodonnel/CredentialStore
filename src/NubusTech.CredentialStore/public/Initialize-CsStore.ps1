@@ -9,7 +9,7 @@
     Initialize-CsStore -FilePath CredentialStore.json
     This command will create a new keysore file called CredentialStore.json.
 .LINK
-    https://github.com/
+    https://github.com/nubustech/NubusTech.CredentialStore
 #>
 function Initialize-CsStore {
     [CmdletBinding()]
