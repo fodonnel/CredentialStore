@@ -1,14 +1,15 @@
 <#
 .SYNOPSIS
-    Set the default CredentialStore Path
+    Set the path to the default CredentialStore
 .DESCRIPTION
-    The Set-CsDefaultPath cmdlet gets default CredentialStore path.
+    The Set-CsDefaultStore cmdlet sets the path to the default CredentialStore.
+    This path is not persisted across powershell sessions.
 .PARAMETER FilePath
     Specifies the path to the CredentialStore file.
 .LINK
     https://github.com/
 #>
-function Set-CsDefaultPath {
+function Set-CsDefaultStore {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true, Position = 0)]

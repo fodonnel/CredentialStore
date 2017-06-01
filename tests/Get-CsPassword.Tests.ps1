@@ -1,8 +1,8 @@
 . "$PSScriptRoot\..\src\NubusTech.CredentialStore\public\Initialize-CsStore.ps1"
-. "$PSScriptRoot\..\src\NubusTech.CredentialStore\public\Get-CsSecret.ps1"
+. "$PSScriptRoot\..\src\NubusTech.CredentialStore\public\Get-CsPassword.ps1"
 . "$PSScriptRoot\..\src\NubusTech.CredentialStore\public\Get-CsEntry.ps1"
 
-Describe Get-CsSecret {
+Describe Get-CsPassword {
     $filePath = $(New-TemporaryFile).FullName
     Remove-Item $filePath
     Initialize-CsStore $filePath
@@ -20,32 +20,32 @@ Describe Get-CsSecret {
     }
     $content | ConvertTo-Json | Out-File -FilePath $filePath
 
-    Context "Get a single secret" {
-        $result = Get-CsSecret -Name User1 -FilePath $filePath
+    Context "Get a single Password" {
+        $result = Get-CsPassword -Name User1 -FilePath $filePath
         $decrypted = (New-Object PSCredential 'N/A', $result).GetNetworkCredential().Password
 
-        It "should get a single secret" {
+        It "should get a single Password" {
             $decrypted | Should Be "pass1"
         }
     }
 
-    Context "Get a single raw secret" {
-        $result = Get-CsSecret -Name User1 -Raw -FilePath $filePath
+    Context "Get a single raw Password" {
+        $result = Get-CsPassword -Name User1 -Raw -FilePath $filePath
 
-        It "should get a single secret" {
+        It "should get a single Password" {
             $result | Should Be "pass1"
         }
     }
 
     Context "Entry does not exist" {
         It "should throw a exception" {
-            { Get-CsSecret -Name unknown -FilePath $filePath} | Should Throw "Cannot find any entry with entry name 'unknown'."
+            { Get-CsPassword -Name unknown -FilePath $filePath} | Should Throw "Cannot find any entry with entry name 'unknown'."
         }
     }
 
     Context "CredentialStore file does not exist" {
         It "should throw a validation exception" {
-            { Get-CsSecret -Name User1 -FilePath unknown.json } | Should Throw "The path 'unknown.json' does not exist."
+            { Get-CsPassword -Name User1 -FilePath unknown.json } | Should Throw "The path 'unknown.json' does not exist."
         }
     }
 

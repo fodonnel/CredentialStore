@@ -26,7 +26,7 @@ function Get-CsCredential {
         })] 
         [Parameter(Mandatory = $false, Position = 1)]
         [Alias("File")]
-        [string] $FilePath = (Get-CsDefaultPath)
+        [string] $FilePath = (Get-CsDefaultStore)
     )
 
     $entry = Get-CsEntry -Name $Name -FilePath $FilePath

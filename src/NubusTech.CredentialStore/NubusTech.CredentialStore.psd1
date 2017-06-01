@@ -74,9 +74,9 @@ FunctionsToExport = @(
     "Get-CsEntry"
     "Set-CsEntry"
     "Get-CsCredential"
-    "Get-CsSecret"
-    "Get-CsDefaultPath"
-    "Set-CsDefaultPath"
+    "Get-CsPassword"
+    "Get-CsDefaultStore"
+    "Set-CsDefaultStore"
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

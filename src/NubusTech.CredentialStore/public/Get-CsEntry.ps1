@@ -29,7 +29,7 @@ function Get-CsEntry {
             })]
         [Parameter(Mandatory = $false, Position = 0)]
         [Alias("File")]
-        [string] $FilePath = (Get-CsDefaultPath),
+        [string] $FilePath = (Get-CsDefaultStore),
 
         [Parameter(Mandatory = $false)]
         [string[]] $Name = "*"

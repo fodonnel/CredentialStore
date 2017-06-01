@@ -36,7 +36,7 @@ function Set-CsEntry {
             })]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, Position = 3)]
         [Alias("File")]
-        [string] $FilePath = (Get-CsDefaultPath)
+        [string] $FilePath = (Get-CsDefaultStore)
     )
 
     begin {
