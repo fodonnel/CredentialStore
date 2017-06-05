@@ -12,7 +12,7 @@
 RootModule = 'NubusTech.CredentialStore.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -30,7 +30,7 @@ CompanyName = 'NubusTech'
 Copyright = '(c) 2017 NubusTech. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'CredentialStore saves powershell credentials securely to file'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -103,13 +103,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('Credentials', 'Security')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/nubustech/NubusTech.CredentialStore/blob/master/LICENSE.txt'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/nubustech/NubusTech.CredentialStore/'
 
         # A URL to an icon representing this module.
         # IconUri = ''
