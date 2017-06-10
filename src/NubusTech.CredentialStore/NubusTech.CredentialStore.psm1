@@ -6,6 +6,23 @@
 . $PSScriptRoot\public\Get-CsDefaultStore.ps1
 . $PSScriptRoot\public\Set-CsDefaultStore.ps1
 
+$majorVersion = $PSVersionTable.PSVersion.Major
+if ($majorVersion -ge 5) {
+    Register-ArgumentCompleter -CommandName Get-CsCredential, Get-CsPassword, Get-CsEntry -ParameterName Name -ScriptBlock {
+        param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameter)
+        $params = @{}
+        if ($fakeBoundParameter["FilePath"]) {
+            $params = @{'FilePath' = $fakeBoundParameter["FilePath"]}
+        }
+        Get-CsEntry @params | Where-Object Name -like "$wordToComplete*" |
+        ForEach-Object {
+            $toolTip = "Username: $($_.Credential.Username)"
+            [System.Management.Automation.CompletionResult]::new($_.Name, $_.Name, 'ParameterValue', $toolTip)
+        }
+
+    }
+}
+
 $defaultPath = "$($env:userprofile)\CredentialStore.json"
 Set-CsDefaultStore -FilePath $defaultPath
 
