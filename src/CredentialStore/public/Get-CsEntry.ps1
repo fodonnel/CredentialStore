@@ -18,7 +18,7 @@
     Get-CsEntry -FilePath CredentialStore.json -Name "vmm*"
     This command retrieves CredentialStore entries with names that begin with vmm.
 .LINK
-    https://github.com/nubustech/NubusTech.CredentialStore
+    https://github.com/fodonnel/CredentialStore
 #>
 function Get-CsEntry {
     [CmdletBinding()]

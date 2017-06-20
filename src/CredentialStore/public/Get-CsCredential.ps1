@@ -12,7 +12,7 @@
     Get-CsCredential -FilePath CredentialStore.json -Name LocalServer
     This command gets the credential of the CredentialStore entry named LocalServer in the CredentialStore.json file.
 .LINK
-    https://github.com/nubustech/NubusTech.CredentialStore
+    https://github.com/fodonnel/CredentialStore
 #>
 function Get-CsCredential {
     [CmdletBinding()]

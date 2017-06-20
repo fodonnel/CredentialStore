@@ -7,7 +7,7 @@
 .PARAMETER FilePath
     Specifies the path to the CredentialStore file.
 .LINK
-    https://github.com/nubustech/NubusTech.CredentialStore
+    https://github.com/fodonnel/CredentialStore
 #>
 function Set-CsDefaultStore {
     [CmdletBinding()]

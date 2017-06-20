@@ -1,5 +1,5 @@
-. "$PSScriptRoot\..\src\NubusTech.CredentialStore\public\Initialize-CsStore.ps1"
-. "$PSScriptRoot\..\src\NubusTech.CredentialStore\public\Set-CsEntry.ps1"
+. "$PSScriptRoot\..\src\CredentialStore\public\Initialize-CsStore.ps1"
+. "$PSScriptRoot\..\src\CredentialStore\public\Set-CsEntry.ps1"
 
 Describe Set-CsEntry {
     $filePath = $(New-TemporaryFile).FullName

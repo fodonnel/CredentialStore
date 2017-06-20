@@ -1,4 +1,4 @@
-# NubusTech.CredentialStore
+# CredentialStore
 
 CredentialStore saves powershell credentials securely to file. 
 

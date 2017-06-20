@@ -4,7 +4,7 @@
 .DESCRIPTION
     The Get-CsDefaultStore cmdlet gets the path to the default CredentialStore
 .LINK
-    https://github.com/nubustech/NubusTech.CredentialStore
+    https://github.com/fodonnel/CredentialStore
 #>
 function Get-CsDefaultStore {
     return $Script:DefaultCredentialStore
