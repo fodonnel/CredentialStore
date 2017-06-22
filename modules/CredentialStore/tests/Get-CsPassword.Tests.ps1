@@ -1,6 +1,6 @@
-. "$PSScriptRoot\..\src\CredentialStore\public\Initialize-CsStore.ps1"
-. "$PSScriptRoot\..\src\CredentialStore\public\Get-CsPassword.ps1"
-. "$PSScriptRoot\..\src\CredentialStore\public\Get-CsEntry.ps1"
+. "$PSScriptRoot\..\src\Initialize-CsStore.ps1"
+. "$PSScriptRoot\..\src\Get-CsPassword.ps1"
+. "$PSScriptRoot\..\src\Get-CsEntry.ps1"
 
 Describe Get-CsPassword {
     $filePath = $(New-TemporaryFile).FullName

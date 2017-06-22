@@ -1,4 +1,4 @@
-. "$PSScriptRoot\..\src\CredentialStore\public\Initialize-CsStore.ps1"
+. "$PSScriptRoot\..\src\Initialize-CsStore.ps1"
 
 Describe Initialize-CsStore {
     $filePath = $(New-TemporaryFile).FullName
