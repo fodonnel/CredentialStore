@@ -1,10 +1,10 @@
-. $PSScriptRoot\public\Initialize-CsStore.ps1
-. $PSScriptRoot\public\Get-CsEntry.ps1
-. $PSScriptRoot\public\Set-CsEntry.ps1
-. $PSScriptRoot\public\Get-CsCredential.ps1
-. $PSScriptRoot\public\Get-CsPassword.ps1
-. $PSScriptRoot\public\Get-CsDefaultStore.ps1
-. $PSScriptRoot\public\Set-CsDefaultStore.ps1
+. $PSScriptRoot\src\Initialize-CsStore.ps1
+. $PSScriptRoot\src\Get-CsEntry.ps1
+. $PSScriptRoot\src\Set-CsEntry.ps1
+. $PSScriptRoot\src\Get-CsCredential.ps1
+. $PSScriptRoot\src\Get-CsPassword.ps1
+. $PSScriptRoot\src\Get-CsDefaultStore.ps1
+. $PSScriptRoot\src\Set-CsDefaultStore.ps1
 
 $majorVersion = $PSVersionTable.PSVersion.Major
 if ($majorVersion -ge 5) {
