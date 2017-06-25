@@ -2,10 +2,10 @@ function Get-CsKeyVaultEntry {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true, Position = 0)]
-        [string] $Name,
+        [string] $VaultName,
 
         [Parameter(Mandatory = $true, Position = 1)]
-        [string] $VaultName
+        [string] $Name
     )
 
     $secret = Get-AzureKeyVaultSecret -VaultName $VaultName -Name $Name

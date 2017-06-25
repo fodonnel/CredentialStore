@@ -37,4 +37,50 @@ Describe Set-CsKeyVaultEntry {
             }
         }
     }
+
+    Context "Pipeline support" {
+        $cred = New-Object PSCredential("user", $("pass" | ConvertTo-SecureString -AsPlainText -Force))
+        $entries = @(
+            [PSCustomObject]@{ Name="name1"; Credential = $cred; Description = "desc1"},
+            [PSCustomObject]@{ Name="name2"; Credential = $cred; Description = "desc2"},
+            [PSCustomObject]@{ Name="name3"; Credential = $cred; Description = "desc3"}
+        )
+
+        $entries | Set-CsKeyVaultEntry -VaultName vault1
+
+        It "should set the entries" {
+            Assert-MockCalled Set-AzureKeyVaultSecret -ParameterFilter {
+                $decoded = (New-Object PSCredential("ueser", $SecretValue)).GetNetworkCredential().Password
+
+                $VaultName -eq 'vault1' -And
+                $Name -eq 'name1' -And
+                $decoded -eq 'pass' -And
+                $ContentType -eq "CredentialStore" -And
+                $Tag['Username'] -eq 'user' -And
+                $Tag['Description'] -eq 'desc1'
+            }
+
+            Assert-MockCalled Set-AzureKeyVaultSecret -ParameterFilter {
+                $decoded = (New-Object PSCredential("ueser", $SecretValue)).GetNetworkCredential().Password
+
+                $VaultName -eq 'vault1' -And
+                $Name -eq 'name2' -And
+                $decoded -eq 'pass' -And
+                $ContentType -eq "CredentialStore" -And
+                $Tag['Username'] -eq 'user' -And
+                $Tag['Description'] -eq 'desc2'
+            }
+
+            Assert-MockCalled Set-AzureKeyVaultSecret -ParameterFilter {
+                $decoded = (New-Object PSCredential("ueser", $SecretValue)).GetNetworkCredential().Password
+
+                $VaultName -eq 'vault1' -And
+                $Name -eq 'name3' -And
+                $decoded -eq 'pass' -And
+                $ContentType -eq "CredentialStore" -And
+                $Tag['Username'] -eq 'user' -And
+                $Tag['Description'] -eq 'desc3'
+            }
+        }
+    }
 }
