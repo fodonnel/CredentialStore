@@ -1,4 +1,4 @@
-
+. "$PSScriptRoot\..\..\CredentialStore\src\Test-CsEntryName.ps1"
 . "$PSScriptRoot\..\..\CredentialStore\src\Initialize-CsStore.ps1"
 . "$PSScriptRoot\..\..\CredentialStore\src\Set-CsEntry.ps1"
 . "$PSScriptRoot\..\src\Get-CsKeyVaultEntry.ps1"

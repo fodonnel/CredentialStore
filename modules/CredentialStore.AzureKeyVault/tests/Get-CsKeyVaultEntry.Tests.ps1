@@ -1,3 +1,4 @@
+. "$PSScriptRoot\..\..\CredentialStore\src\Test-CsEntryName.ps1"
 . "$PSScriptRoot\..\src\Get-CsKeyVaultEntry.ps1"
 
 Describe Get-CsKeyVaultEntry {

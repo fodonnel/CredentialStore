@@ -15,7 +15,7 @@
 .Example
     Set-CsKeyVaultEntry -VaultName myVault -Name LocalServer -Credential $cred
     This command sets the CredentialStore entry named LocalServer in the myVault Key Vault.
-    
+
 .LINK
     https://github.com/fodonnel/CredentialStore
 #>
@@ -25,7 +25,11 @@ function Set-CsKeyVaultEntry {
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $VaultName,
-        
+
+        [ValidateScript( {
+            if (Test-CsEntryName $_) { $true }
+            else { throw [System.Management.Automation.ValidationMetadataException] "The name '${_}' is invalid." }
+        })]
         [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, Position = 1)]
         [string] $Name,
 

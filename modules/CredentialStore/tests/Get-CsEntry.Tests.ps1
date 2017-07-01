@@ -1,5 +1,6 @@
 . "$PSScriptRoot\..\src\Initialize-CsStore.ps1"
 . "$PSScriptRoot\..\src\Get-CsEntry.ps1"
+. "$PSScriptRoot\..\src\Test-CsEntryName.ps1"
 . "$PSScriptRoot\..\src\Set-CsEntry.ps1"
 
 Describe Get-CsEntry {

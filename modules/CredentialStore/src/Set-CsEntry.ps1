@@ -20,6 +20,10 @@
 function Set-CsEntry {
     [CmdletBinding(SupportsShouldProcess = $false)]
     param(
+        [ValidateScript( {
+            if (Test-CsEntryName $_) { $true }
+            else { throw [System.Management.Automation.ValidationMetadataException] "The name '${_}' is invalid." }
+        })]        
         [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, Position = 0)]
         [string] $Name,
 
@@ -31,9 +35,9 @@ function Set-CsEntry {
         [string] $Description,
 
         [ValidateScript( {
-                if (Test-Path $_) { $true }
-                else { throw [System.Management.Automation.ValidationMetadataException] "The path '${_}' does not exist." }
-            })]
+            if (Test-Path $_) { $true }
+            else { throw [System.Management.Automation.ValidationMetadataException] "The path '${_}' does not exist." }
+        })]
         [Parameter(Mandatory = $false, ValueFromPipeline = $false, Position = 3)]
         [Alias("File")]
         [string] $FilePath = (Get-CsDefaultStore)

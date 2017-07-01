@@ -70,13 +70,14 @@ Description = 'CredentialStore saves powershell credentials securely to file'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
-    "Initialize-CsStore"
-    "Get-CsEntry"
-    "Set-CsEntry"
-    "Get-CsCredential"
-    "Get-CsPassword"
-    "Get-CsDefaultStore"
-    "Set-CsDefaultStore"
+    "Initialize-CsStore",
+    "Get-CsEntry",
+    "Set-CsEntry",
+    "Get-CsCredential",
+    "Get-CsPassword",
+    "Get-CsDefaultStore",
+    "Set-CsDefaultStore",
+    "Test-CsEntryName"
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
