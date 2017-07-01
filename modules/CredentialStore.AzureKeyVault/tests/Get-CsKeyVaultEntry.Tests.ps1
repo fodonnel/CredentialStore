@@ -5,6 +5,15 @@ Describe Get-CsKeyVaultEntry {
 
     Context "Get an from azure entry by name" {
         Mock -CommandName Get-AzureKeyVaultSecret -ParameterFilter {
+            $VaultName -eq 'vault1'
+        } -MockWith {
+            @{
+                Name        = 'name1'
+                Attributes  = @{ Tags = @{ Username = 'user1'; Description = "desc1" }}
+            }
+        }
+
+        Mock -CommandName Get-AzureKeyVaultSecret -ParameterFilter {
             $VaultName -eq 'vault1' -And $Name -eq 'name1'
         } -MockWith {
             @{

@@ -15,6 +15,7 @@
 .Example
     Set-CsKeyVaultEntry -VaultName myVault -Name LocalServer -Credential $cred
     This command sets the CredentialStore entry named LocalServer in the myVault Key Vault.
+    
 .LINK
     https://github.com/fodonnel/CredentialStore
 #>
