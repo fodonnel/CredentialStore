@@ -21,10 +21,16 @@ function Get-CsKeyVaultEntry {
         [string] $VaultName,
 
         [Parameter(Mandatory = $false, Position = 1)]
-        [string] $Name = '*'
+        [string[]] $Name = '*'
     )
 
-    $entries = Get-AzureKeyVaultSecret -VaultName $VaultName | Where-Object { $_.Name -like $Name }
+    $allEntries = Get-AzureKeyVaultSecret -VaultName $VaultName
+    $entries = @(foreach ($entry in $allEntries) {
+            if ( $Name | Where-Object { $entry.Name -like $_ }) {
+                $entry
+            }
+        })
+
     foreach ($entry in $entries) {
         $secret = Get-AzureKeyVaultSecret -VaultName $VaultName -Name $entry.Name
         $username = $secret.Attributes.Tags["Username"]
