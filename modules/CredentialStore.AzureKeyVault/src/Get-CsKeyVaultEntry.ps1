@@ -24,7 +24,9 @@ function Get-CsKeyVaultEntry {
         [string[]] $Name = '*'
     )
 
-    $allEntries = Get-AzureKeyVaultSecret -VaultName $VaultName
+    $allEntries = Get-AzureKeyVaultSecret -VaultName $VaultName |
+        Where-Object { $_.ContentType -eq 'CredentialStore' }
+        
     $entries = @(foreach ($entry in $allEntries) {
             if ( $Name | Where-Object { $entry.Name -like $_ }) {
                 $entry
