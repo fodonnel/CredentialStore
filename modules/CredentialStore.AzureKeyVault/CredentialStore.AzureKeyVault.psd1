@@ -12,7 +12,7 @@
 RootModule = 'CredentialStore.AzureKeyVault.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '1.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -30,7 +30,7 @@ CompanyName = 'fodonnel'
 Copyright = "(c) 2017 Fergal O'Donnell. All rights reserved."
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Import and Export functionality to sync CredentialStore with Azure KeyVault'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -52,8 +52,8 @@ Copyright = "(c) 2017 Fergal O'Donnell. All rights reserved."
 
 # Modules that must be imported into the global environment prior to importing this module
 RequiredModules = @(
-    'CredentialStore',
-    'AzureRM.KeyVault'
+    @{ ModuleName = 'CredentialStore'; RequiredVersion = '1.1' },
+    @{ ModuleName = 'AzureRM.KeyVault'; RequiredVersion = '3.1.0' }
 )
 
 # Assemblies that must be loaded prior to importing this module
@@ -103,13 +103,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('Credentials', 'Security', 'Azure', 'KeyVault')
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://github.com/fodonnel/CredentialStore/blob/master/LICENSE.txt'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/fodonnel/CredentialStore/'
 
         # A URL to an icon representing this module.
         # IconUri = ''
