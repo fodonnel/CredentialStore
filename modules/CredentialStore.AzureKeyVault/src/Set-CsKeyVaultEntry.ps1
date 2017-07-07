@@ -22,6 +22,7 @@
 
 function Set-CsKeyVaultEntry {
     [CmdletBinding(SupportsShouldProcess = $true)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUsePSCredentialType", "")]
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $VaultName,

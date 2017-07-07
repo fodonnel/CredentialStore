@@ -1,5 +1,5 @@
 # CredentialStore
-![Build Status](https://ci.appveyor.com/api/projects/status/github/fodonnel/CredentialStore?branch=master&svg=true)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/fodonnel/CredentialStore?branch=master&svg=true)](https://ci.appveyor.com/project/fodonnel/credentialstore)
 
 CredentialStore saves powershell credentials securely to file. 
 
