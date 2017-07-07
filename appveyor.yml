@@ -2,6 +2,11 @@ version: 1.0.{build}
 os: WMF 5
 build: false
 
+skip_commits:
+  files:
+    - README.md
+  message: /updated readme.*|update readme.*s|update docs.*|update version.*|update appveyor.*/
+
 install:
   - ps: Install-PackageProvider -Name NuGet -Force
   - ps: Install-Module PsScriptAnalyzer -Force
