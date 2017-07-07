@@ -1,3 +1,6 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+param()
+
 . "$PSScriptRoot\..\src\Test-CsEntryName.ps1"
 
 Describe Test-CsEntryName {

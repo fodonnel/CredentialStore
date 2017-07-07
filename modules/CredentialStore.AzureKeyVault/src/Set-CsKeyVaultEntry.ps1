@@ -21,7 +21,7 @@
 #>
 
 function Set-CsKeyVaultEntry {
-    [CmdletBinding(SupportsShouldProcess = $false)]
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $VaultName,
@@ -42,17 +42,19 @@ function Set-CsKeyVaultEntry {
     )
 
     process {
-        $params = @{
-            Name        = $Name
-            VaultName   = $VaultName
-            SecretValue = $Credential.password
-            ContentType = "CredentialStore"
-            Tag         = @{
-                Username    = $Credential.Username
-                Description = $Description
+        if ($pscmdlet.ShouldProcess($Name)) {
+            $params = @{
+                Name        = $Name
+                VaultName   = $VaultName
+                SecretValue = $Credential.password
+                ContentType = "CredentialStore"
+                Tag         = @{
+                    Username    = $Credential.Username
+                    Description = $Description
+                }
             }
-        }
 
-        Set-AzureKeyVaultSecret @params
+            Set-AzureKeyVaultSecret @params
+        }
     }
 }

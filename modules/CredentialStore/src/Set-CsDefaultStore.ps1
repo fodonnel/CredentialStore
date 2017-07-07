@@ -10,12 +10,14 @@
     https://github.com/fodonnel/CredentialStore
 #>
 function Set-CsDefaultStore {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [Alias("File")]
         [string] $FilePath
     )
 
-    $Script:DefaultCredentialStore = $FilePath
+    if ($pscmdlet.ShouldProcess($FilePath)) {
+        $Script:DefaultCredentialStore = $FilePath
+    }
 }

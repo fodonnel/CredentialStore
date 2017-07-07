@@ -1,3 +1,6 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+param()
+
 . "$PSScriptRoot\..\src\Initialize-CsStore.ps1"
 
 Describe Initialize-CsStore {

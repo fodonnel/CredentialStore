@@ -1,0 +1,15 @@
+version: 1.0.{build}
+os: WMF 5
+build: false
+
+install:
+  - ps: Install-PackageProvider -Name NuGet -Force
+  - ps: Install-Module PsScriptAnalyzer -Force
+  - ps: Install-Module Pester -Force
+
+build_script: 
+  - ps: . .\appveyor\build.ps1
+
+test_script: 
+  - ps: . .\appveyor\test.ps1
+

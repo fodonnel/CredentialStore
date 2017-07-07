@@ -1,3 +1,6 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+param()
+
 . "$PSScriptRoot\..\src\Get-CsCredential.ps1"
 . "$PSScriptRoot\..\src\Get-CsEntry.ps1"
 . "$PSScriptRoot\..\src\Initialize-CsStore.ps1"

@@ -18,7 +18,8 @@
     https://github.com/fodonnel/CredentialStore
 #>
 function Set-CsEntry {
-    [CmdletBinding(SupportsShouldProcess = $false)]
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUsePSCredentialType", "")]
     param(
         [ValidateScript( {
             if (Test-CsEntryName $_) { $true }
@@ -51,20 +52,22 @@ function Set-CsEntry {
     }
 
     process {
-        $entry = $store.credentials | Where-Object {$_.name -eq $Name}
+        if ($pscmdlet.ShouldProcess($Name)) {
+            $entry = $store.credentials | Where-Object {$_.name -eq $Name}
 
-        if (-not $entry) {
-            $store.credentials += @{
-                name        = $Name
-                description = $Description
-                username    = $Credential.username
-                password    = $($Credential.password | ConvertFrom-SecureString)
+            if (-not $entry) {
+                $store.credentials += @{
+                    name        = $Name
+                    description = $Description
+                    username    = $Credential.username
+                    password    = $($Credential.password | ConvertFrom-SecureString)
+                }
             }
-        }
-        else {
-            $entry.description = $description
-            $entry.username = $Credential.username
-            $entry.password = $($Credential.password | ConvertFrom-SecureString)
+            else {
+                $entry.description = $description
+                $entry.username = $Credential.username
+                $entry.password = $($Credential.password | ConvertFrom-SecureString)
+            }
         }
     }
 

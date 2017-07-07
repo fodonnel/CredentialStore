@@ -1,4 +1,6 @@
-. "$PSScriptRoot\..\..\CredentialStore\src\Test-CsEntryName.ps1"
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+param()
+
 . "$PSScriptRoot\..\..\CredentialStore\src\Get-CsEntry.ps1"
 . "$PSScriptRoot\..\src\Set-CsKeyVaultEntry.ps1"
 . "$PSScriptRoot\..\src\Export-CsKeyVaultStore.ps1"
