@@ -54,7 +54,7 @@ Describe Set-CsKeyVaultEntry {
 
         It "should set the entries" {
             Assert-MockCalled Set-AzureKeyVaultSecret -ParameterFilter {
-                $decoded = (New-Object PSCredential("ueser", $SecretValue)).GetNetworkCredential().Password
+                $decoded = (New-Object PSCredential("user", $SecretValue)).GetNetworkCredential().Password
 
                 $VaultName -eq 'vault1' -And
                 $Name -eq 'name1' -And
@@ -65,7 +65,7 @@ Describe Set-CsKeyVaultEntry {
             }
 
             Assert-MockCalled Set-AzureKeyVaultSecret -ParameterFilter {
-                $decoded = (New-Object PSCredential("ueser", $SecretValue)).GetNetworkCredential().Password
+                $decoded = (New-Object PSCredential("user", $SecretValue)).GetNetworkCredential().Password
 
                 $VaultName -eq 'vault1' -And
                 $Name -eq 'name2' -And
@@ -76,7 +76,7 @@ Describe Set-CsKeyVaultEntry {
             }
 
             Assert-MockCalled Set-AzureKeyVaultSecret -ParameterFilter {
-                $decoded = (New-Object PSCredential("ueser", $SecretValue)).GetNetworkCredential().Password
+                $decoded = (New-Object PSCredential("user", $SecretValue)).GetNetworkCredential().Password
 
                 $VaultName -eq 'vault1' -And
                 $Name -eq 'name3' -And
