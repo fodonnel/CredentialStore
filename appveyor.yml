@@ -11,6 +11,7 @@ install:
   - ps: Install-PackageProvider -Name NuGet -Force
   - ps: Install-Module PsScriptAnalyzer -Force
   - ps: Install-Module Pester -Force
+  - ps: Install-Module AzureRM.KeyVault -Force
 
 build_script: 
   - ps: . .\appveyor\build.ps1
