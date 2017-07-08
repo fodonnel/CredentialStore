@@ -1,6 +1,10 @@
-version: 1.0.{build}
+version: 1.1.{build}
 os: WMF 5
 build: false
+
+environment:
+  psgallery_api_key:
+    secure: K9XoMzIw8isRMSZB5zd2IPaB8V6IkWElN04L7EFAes7mZ1TWuQsJthDcumV6/qAd
 
 skip_commits:
   files:
@@ -19,3 +23,5 @@ build_script:
 test_script: 
   - ps: . .\appveyor\test.ps1
 
+deploy_script:
+  - ps: . .\appveyor\deploy.ps1

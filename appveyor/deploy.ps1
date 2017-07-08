@@ -1,22 +1,19 @@
 Write-Host 'Running AppVeyor deploy script' -ForegroundColor Yellow
- 
-
-Write-Host 'Creating new module manifest'
-$ModuleManifestPath = Join-Path -path "$pwd" -ChildPath ("$env:ModuleName"+'.psd1')
-$ModuleManifest     = Get-Content $ModuleManifestPath -Raw
-[regex]::replace($ModuleManifest,'(ModuleVersion = )(.*)',"`$1'$env:APPVEYOR_BUILD_VERSION'") | Out-File -LiteralPath $ModuleManifestPath
- 
-
-if ($env:APPVEYOR_REPO_BRANCH -notmatch 'master')
-{
+if ($env:APPVEYOR_REPO_BRANCH -notmatch 'master') {
     Write-Host "Finished testing of branch: $env:APPVEYOR_REPO_BRANCH - Exiting"
     exit;
 }
- 
-$ModulePath = Split-Path $pwd
-Write-Host "Adding $ModulePath to 'psmodulepath' PATH variable"
-$env:psmodulepath = $env:psmodulepath + ';' + $ModulePath
- 
-Write-Host 'Publishing module to Powershell Gallery'
 
-#Publish-Module -Name $env:ModuleName -NuGetApiKey $env:NuGetApiKey
+$modulePath = "$PSScriptRoot\..\modules"
+$env:psmodulepath = $env:psmodulepath + ';' + $ModulePath
+
+Write-Host 'Updating the manifests'
+$filePath = "$modulePath\CredentialStore\CredentialStore.psd1"
+(Get-Content $filePath -Raw) -replace "0.0.0.1", "$env:APPVEYOR_BUILD_VERSION" | Out-File -LiteralPath $filePath
+
+$filePath = "$modulePath\CredentialStore.AzureKeyVault\CredentialStore.AzureKeyVault.psd1"
+(Get-Content $filePath -Raw) -replace "0.0.0.1", "$env:APPVEYOR_BUILD_VERSION" | Out-File -LiteralPath $filePath
+
+Write-Host 'Publishing module to Powershell Gallery'
+Publish-Module -Name CredentialStore -NuGetApiKey $env:psgallery_api_key
+Publish-Module -Name CredentialStore.AzureKeyVault -NuGetApiKey $env:psgallery_api_key
